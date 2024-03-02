@@ -1,0 +1,204 @@
+/* Contents of style.css updated */
+.big-text {
+    font-size: 4rem; 
+    color: white;
+  }
+  
+  #timer {
+    font-size: 6rem; 
+    margin-top: 20px;
+    color: white; 
+  }
+  
+  body, html {
+    height: 100%;
+    margin: 0;
+    background-image: url('images/firewatch2.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    overflow: hidden;
+  }
+  
+  .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 20px;
+  }
+  #timer-controls button {
+    margin: 0 10px; /* Space out buttons */
+  }
+
+  .timer-input {
+    width: 50px; 
+    background-color: black;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 4rem; 
+}  
+
+.instruction-text {
+  color: white; 
+  font-size: 1.5rem; 
+  margin: 20px 0; 
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); 
+}
+
+.night {
+  position:absolute;
+  width: 0%;
+  height: 50%;
+  transform: rotateZ(7deg);
+}
+
+.star {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  height: 2px;
+  width: 100px;
+  background: linear-gradient(-45deg, #FFF, rgba(0, 0, 255, 0));
+  border-radius: 999px;
+  filter: drop-shadow(0 0 6px #FFF);
+  animation: tail 5s ease-in-out infinite,
+    falling 5s ease-in-out infinite;
+}
+
+
+
+@keyframes tail {
+  0% {
+    width: 0;
+  }
+  30% {
+    width: 300px; /*max length of streak */
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes falling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(2000px); /*length the starts travel */
+  }
+}
+
+.star::before,
+.star::after{
+  content: "";
+  position: absolute;
+  top: calc(50%-1px);
+  right: 0;
+  height: 2px;
+  background: linear-gradient(-45deg, rgba(0, 0, 255, 0), #FFF, rgba(0, 0, 255, 0));
+  border-radius: 100%;
+  transform: translateX(50%) rotateZ(45deg);
+  animation:shining 3s ease-in-out infinite
+
+}
+
+@keyframes shining {
+  0%{
+    width: 0;
+  }
+  50%{
+    width: 20px;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+.star::after{
+  transform: translateX(50%) rotateZ(-45deg);
+}
+
+.star:nth-child(1){
+  top: calc(50% - 100px);
+  left: calc(50% - 120px);
+  animation-delay: 1.5s;
+}
+
+.star:nth-child(1)::before,
+.star:nth-child(1)::after {
+  animation-delay: 1s;
+}
+
+.star:nth-child(2){
+  top: calc(50% - 50px);
+  left: calc(50% - 1300px);
+  animation-delay: 1.2s;
+}
+
+.star:nth-child(2)::before,
+.star:nth-child(2)::after {
+  animation-delay: .8s;
+}
+
+.star:nth-child(3){
+  top: calc(30% - 0px);
+  left: calc(50% - 200px);
+  animation-delay: 1.8s;
+}
+
+.star:nth-child(3)::before,
+.star:nth-child(3)::after {
+  animation-delay: 4s;
+}
+.star:nth-child(4){
+  top: calc(2% - 0px);
+  left: calc(50% - 200px);
+  animation-delay: 1.8s;
+}
+
+.star:nth-child(4)::before,
+.star:nth-child(4)::after {
+  animation-delay: 4s;
+}
+
+.moon {
+  position: fixed; 
+  top: 100px; 
+  right: 50px; 
+  width: 150px; /* diameter of the moon */
+  height: 150px; /* diameter of the moon */
+  background-color: rgb(221, 210, 210);
+  border-radius: 50%; 
+  background-image: 
+    radial-gradient(circle at 20px 30px, rgba(0, 0, 0, 0.2), transparent 20px),
+    radial-gradient(circle at 70px 50px, rgba(0, 0, 0, 0.3), transparent 25px),
+    radial-gradient(circle at 50px 90px, rgba(0, 0, 0, 0.4), transparent 15px),
+    radial-gradient(circle at 80px 20px, rgba(0, 0, 0, 0.2), transparent 10px),
+    radial-gradient(circle at 40px 70px, rgba(0, 0, 0, 0.3), transparent 20px),
+    radial-gradient(circle at 100px 110px, rgba(0, 0, 0, 0.3), transparent 20px);
+  box-shadow: 0 0 8px 8px rgba(255, 255, 255, 0.5);
+  animation: pulseGlow 20s infinite alternate ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.9);
+  }
+}
+
+.slow-star {
+  animation: tail 20s ease-in-out infinite, 
+             falling 20s ease-in-out infinite; 
+}
+
+.slower-star {
+  animation: tail 10s ease-in-out infinite, 
+             falling 10s ease-in-out infinite; 
+}
+
