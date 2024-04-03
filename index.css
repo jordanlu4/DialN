@@ -12,14 +12,15 @@
   }
   
   body, html {
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     margin: 0;
     /* background-image: url('images/firewatch2.jpg'); */
     background-color: black;
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
-    overflow: hidden;
+    overflow-x: hidden;
   }
   
   .container {
@@ -187,6 +188,8 @@
   box-shadow: 0 0 8px 8px rgba(255, 255, 255, 0.5);
   animation: pulseGlow 20s infinite alternate ease-in-out;
 }
+
+
 
 @keyframes pulseGlow {
   0% {
@@ -428,21 +431,25 @@
 }
 
 .button-section {
-  position: fixed; /* Or 'absolute', depending on your layout needs */
-  bottom: 4vh; /* Example: Place button section 10% from the bottom of the viewport */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Adjust horizontal centering */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap; 
+  
 }
 
 .button-section button {
-  width: 10vw; /* Button width as a percentage of viewport width */
-  min-width: 120px; /* To ensure buttons don't become too small */
+  margin-bottom: 10px; /* Space between rows */
+  margin-right: 10px; /* Space between buttons on the same row */
+  width: 100px;
 }
-
 
 .button-section button:last-child {
-  margin-bottom: 0;
+  margin-right: 0; /* Removes margin from the last button to avoid extra spacing on the right side */
 }
+
 
 .moon, .astro-container, .rocket-container{
   z-index: 2; 
