@@ -1,134 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DialN</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- External CSS -->
-    <link href="index.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DialN</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link href="index.css" rel="stylesheet">
 </head>
+
 <body>
-  <div class="night">
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star slower-star"></div>
-      <div class="star slow-star"></div>
-  </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">DialN</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Home
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="about.html">About</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="container text-center">
-        <p class="big-text">DialN</p>
-        <div id="timer" class="big-text">
-            <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds">00</span>
-        </div>
 
-        <p class="instruction-text">Click the timer to start</p>
-        <div>
-            <button id="startBtn" class="btn btn-primary">Start</button>
-            <button id="pauseBtn" class="btn btn-warning" disabled>Pause</button>
-            <button id="clearBtn" class="btn btn-danger">Clear</button>
-        </div>
+  <div class="space-travelers">
+    <div class="rocket-container">
+        <img src="images/rocket.png" alt="Rocket" class="rocket" draggable="false">
     </div>
-    
-    
-  
+    <div class="astro-container">
+        <img src="images/astro.png" alt="Astronaut" class="astro" draggable="false">
+    </div>
+</div>
+
+</div>
   <div class="night">
     <div class="star"></div>
     <div class="star"></div>
     <div class="star slower-star"></div>
     <div class="star slow-star"></div>
-</div>
-<!-- Bootstrap JS with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.126.1/build/three.min.js"></script>
-<script>
-let interval;
-let countdownTime = 0;
-let running = false;
+  </div>
 
-function updateTimerDisplay() {
-    let totalMilliseconds = countdownTime;
-    let hours = String(Math.floor(totalMilliseconds / 3600000)).padStart(2, '0');
-    let minutes = String(Math.floor((totalMilliseconds % 3600000) / 60000)).padStart(2, '0');
-    let seconds = String(Math.floor((totalMilliseconds % 60000) / 1000)).padStart(2, '0');
-    let milliseconds = String(Math.floor((totalMilliseconds % 1000) / 10)).padStart(2, '0'); // Adjusted for visibility
 
-    document.getElementById('hours').textContent = hours;
-    document.getElementById('minutes').textContent = minutes;
-    document.getElementById('seconds').textContent = seconds;
-    document.getElementById('milliseconds').textContent = milliseconds; // Ensure two digits are shown
-}
+  <div class="moon"></div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">DialN</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Home
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="about.html">About</a></li>
+              <!-- <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container text-center">
+    <p class="big-text">DialN</p>
+    <div id="timer" class="big-text" draggable="false">
+      <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>:<span
+        id="milliseconds">00</span>
+    </div>
 
-function setTimer() {
-    let inputHours = prompt("Set hours:", "0") || "0";
-    let inputMinutes = prompt("Set minutes:", "0") || "0";
-    countdownTime = (+inputHours * 3600 + +inputMinutes * 60) * 1000;
-    updateTimerDisplay();
-}
+    <p class="instruction-text">Click the timer to start</p>
+    <div>
+      <button id="startBtn" class="btn btn-primary">Start</button>
+      <button id="pauseBtn" class="btn btn-warning" disabled>Pause</button>
+      <button id="clearBtn" class="btn btn-danger">Clear</button>
+    </div>
 
-document.getElementById('hours').addEventListener('click', setTimer);
-document.getElementById('minutes').addEventListener('click', setTimer);
+    <div class="image-section">
+      <iframe id="videoPlayer" width="700" height="315" src="https://www.youtube-nocookie.com/embed/jfKfPfyJRdk?si=C8MZgeYIvF9W-SHG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    
+    <div class="button-section">
+      <button class="btn btn-success" data-video="https://www.youtube-nocookie.com/embed/jfKfPfyJRdk?si=C8MZgeYIvF9W-SHG">Lofi</button>
+      <button class="btn btn-success" data-video="https://www.youtube-nocookie.com/embed/vMxYL4Cj85Y?si=LI_VY-Z13ThuCbYB">Piano</button>
+      <button class="btn btn-success" data-video="https://www.youtube.com/embed/4xDzrJKXOOY?si=kRrapMMLcp6PIjIy">Synthwave</button>
+      <button class="btn btn-success" data-video="https://www.youtube.com/embed/S_MOd40zlYU?si=oYUGV1fD99WWfrYH">Ambient</button>
+      <!-- <button id="spotifyBtn" class="btn btn-success">Spotify</button> -->
+    </div>
+<!-- 
+    <div class="image-section">
+      <a href="#" id="song1" target="_blank">
+        <img src="" alt="Song 1" />
+        <p>Song Name 1</p>
+      </a>
+      <a href="#" id="song2" target="_blank">
+        <img src="" alt="Song 2" />
+        <p>Song Name 2</p>
+      </a>
+      <a href="#" id="song3" target="_blank">
+        <img src="" alt="Song 3" />
+        <p>Song Name 3</p>
+      </a>
+    </div>
+    <button id="shuffleBtn" class="shuffle-button">
+      <img src="images/shuffle.png" alt="Shuffle" />
+    </button> -->
 
-document.getElementById('startBtn').addEventListener('click', () => {
-    if (!running && countdownTime > 0) {
-        running = true;
-        document.getElementById('pauseBtn').disabled = false;
-        interval = setInterval(() => {
-            countdownTime -= 10; // More frequent updates for smoother milliseconds
-            if (countdownTime <= 0) {
-                clearInterval(interval);
-                countdownTime = 0;
-                running = false;
-                document.getElementById('pauseBtn').disabled = true;
-                alert('Timer finished!');
-            }
-            updateTimerDisplay();
-        }, 10); // Updating every 10ms for a smoother countdown effect
+  </div>
+  
+
+
+  <!-- B ootstrap JS with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.126.1/build/three.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Function to change the video source of the iframe
+    function changeVideoSource(newSource) {
+      var iframe = document.getElementById('videoPlayer');
+      console.log('Changing source to:', newSource); // This will log in the console for debugging.
+      iframe.src = newSource;
     }
-});
-
-document.getElementById('pauseBtn').addEventListener('click', () => {
-    if (running) {
-        clearInterval(interval);
-        running = false;
-        document.getElementById('pauseBtn').disabled = true;
-    }
-});
-
-document.getElementById('clearBtn').addEventListener('click', () => {
-    clearInterval(interval);
-    countdownTime = 0;
-    running = false;
-    document.getElementById('pauseBtn').disabled = true;
-    updateTimerDisplay();
-});
-
-
-
-</script>
-
+  
+    // Get all buttons with the 'btn' class and add an event listener
+    var buttons = document.querySelectorAll('.btn');
+    buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var newVideoSource = this.getAttribute('data-video');
+        changeVideoSource(newVideoSource);
+      });
+    });
+  </script>
+  
+  
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 /* Contents of style.css updated */
 .big-text {
     font-size: 4rem; 
+    
     color: white;
   }
   
@@ -13,7 +14,8 @@
   body, html {
     height: 100%;
     margin: 0;
-    background-image: url('images/firewatch2.jpg');
+    /* background-image: url('images/firewatch2.jpg'); */
+    background-color: black;
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -27,7 +29,9 @@
     justify-content: flex-start;
     align-items: center;
     padding-top: 20px;
+    position: relative;
   }
+
   #timer-controls button {
     margin: 0 10px; /* Space out buttons */
   }
@@ -46,6 +50,7 @@
   font-size: 1.5rem; 
   margin: 20px 0; 
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); 
+  font-family: 'Orbitron', sans-serif; /* Using the imported font */
 }
 
 .night {
@@ -161,15 +166,15 @@
 
 .star:nth-child(4)::before,
 .star:nth-child(4)::after {
-  animation-delay: 4s;
+  animation-delay: 10s;
 }
 
 .moon {
   position: fixed; 
   top: 100px; 
   right: 50px; 
-  width: 150px; /* diameter of the moon */
-  height: 150px; /* diameter of the moon */
+  width: 200px; /* diameter of the moon */
+  height: 200px; /* diameter of the moon */
   background-color: rgb(221, 210, 210);
   border-radius: 50%; 
   background-image: 
@@ -200,5 +205,252 @@
 .slower-star {
   animation: tail 10s ease-in-out infinite, 
              falling 10s ease-in-out infinite; 
+}
+
+.star2 {
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 2px #fff, 0 0 4px #fff;
+}
+
+.pulsing-star {
+  animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px #fff, 0 0 4px #fff;
+  }
+  50% {
+    box-shadow: 0 0 4px #fff, 0 0 8px #fff;
+  }
+}
+
+.rocket-container {
+  position: absolute;
+  top: 70%;
+  left: 10%;
+  transform: translate(-50%, -50%) rotate(-20deg); /*rotation if needed */
+  width: 50px; 
+  height: 100px; 
+  animation: rotate180  100s infinite linear;
+}
+
+.rocket {
+  width: 100%;
+  height: auto;
+  transform: rotate(90deg);
+  display: block;
+  position: relative;
+  animation: animate 4s ease infinite;
+}
+
+  /* @keyframes animate {
+    0%,100%
+    {
+      transform: translateY(-5px);
+    }
+    50%
+    {
+      transform: translatex(5px);
+    }
+  } */
+
+
+/* .rocket-container::before {
+  content: "";
+  position: absolute;
+  bottom: -165px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px; 
+  height: 200px; 
+  background: linear-gradient(#00d0ff, transparent); 
+}
+
+.rocket-container::after {
+  content: "";
+  position: absolute;
+  bottom: -165px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px; 
+  height: 200px; 
+  background: linear-gradient(#00d0ff, transparent); 
+  filter: blur(20px);
+} */
+
+.astro-container {
+  position: absolute;
+  top: 65%; 
+  left: 15%; 
+  animation: rotate360 30s infinite linear;
+}
+
+.astro {
+  width: 30px; 
+  height: auto;
+  animation: float 20s ease infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(50px, -50px); 
+  }
+  50% {
+    transform: translate(0px, -70px); 
+  }
+  75% {
+    transform: translate(-50px, -50px); 
+  }
+}
+
+@keyframes rotate180 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.song-suggestions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.songs .song {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer; 
+}
+
+#shuffleBtn {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.image-section {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  flex-wrap: wrap; 
+  /* margin-bottom: 50px; */
+  /* padding-bottom: 50px; */
+}
+
+.image-section a {
+  margin: 20px;
+  text-decoration: none;
+  color: white; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  display: inline-block; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.image-section a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.image-section img {
+  width: 200px; 
+  height: auto;
+  border-radius: 10px; 
+}
+
+.image-section p {
+  margin-top: 10px;
+  font-size: 1.5em; 
+  text-align: center;
+}
+
+.song {
+  display: inline-block;
+  background-color: #1DB954;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 20px; 
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+}
+
+#shuffleBtn {
+  margin-top: -20px; 
+  padding: 10px 20px;
+  cursor: pointer;
+ 
+}
+
+.shuffle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.shuffle-button img {
+  width: 50px;
+  height: auto;
+}
+
+.shuffle-button:hover {
+  transform: scale(1.1); 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); 
+}
+
+.image-section a p {
+  font-size: 0.9em; 
+  font-family: 'Orbitron', sans-serif;
+  color: #fff; 
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7); 
+}
+
+.button-section {
+  position: fixed; /* Or 'absolute', depending on your layout needs */
+  bottom: 4vh; /* Example: Place button section 10% from the bottom of the viewport */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust horizontal centering */
+}
+
+.button-section button {
+  width: 10vw; /* Button width as a percentage of viewport width */
+  min-width: 120px; /* To ensure buttons don't become too small */
+}
+
+
+.button-section button:last-child {
+  margin-bottom: 0;
+}
+
+.moon, .astro-container, .rocket-container{
+  z-index: 2; 
+}
+
+.space-travelers {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
