@@ -18,14 +18,14 @@
 
   <div class="space-travelers">
     <div class="rocket-container">
-        <img src="images/rocket.png" alt="Rocket" class="rocket" draggable="false">
+      <img src="images/rocket.png" alt="Rocket" class="rocket" draggable="false">
     </div>
     <div class="astro-container">
-        <img src="images/astro.png" alt="Astronaut" class="astro" draggable="false">
+      <img src="images/astro.png" alt="Astronaut" class="astro" draggable="false">
     </div>
-</div>
+  </div>
 
-</div>
+  </div>
   <div class="night">
     <div class="star"></div>
     <div class="star"></div>
@@ -74,17 +74,25 @@
     </div>
 
     <div class="image-section">
-      <iframe id="videoPlayer" width="700" height="315" src="https://www.youtube-nocookie.com/embed/jfKfPfyJRdk?si=C8MZgeYIvF9W-SHG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe id="videoPlayer" width="700" height="315"
+        src="https://www.youtube-nocookie.com/embed/jfKfPfyJRdk?si=C8MZgeYIvF9W-SHG" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
-    
+
     <div class="button-section">
-      <button class="btn btn-success" data-video="https://www.youtube-nocookie.com/embed/jfKfPfyJRdk?si=C8MZgeYIvF9W-SHG">Lofi</button>
-      <button class="btn btn-success" data-video="https://www.youtube-nocookie.com/embed/vMxYL4Cj85Y?si=LI_VY-Z13ThuCbYB">Piano</button>
-      <button class="btn btn-success" data-video="https://www.youtube.com/embed/4xDzrJKXOOY?si=kRrapMMLcp6PIjIy">Synthwave</button>
-      <button class="btn btn-success" data-video="https://www.youtube.com/embed/S_MOd40zlYU?si=oYUGV1fD99WWfrYH">Ambient</button>
+      <button class="btn btn-success btn-video"
+        data-video="https://www.youtube-nocookie.com/embed/jfKfPfyJRdk?si=C8MZgeYIvF9W-SHG">Lofi</button>
+      <button class="btn btn-success btn-video"
+        data-video="https://www.youtube-nocookie.com/embed/vMxYL4Cj85Y?si=LI_VY-Z13ThuCbYB">Piano</button>
+      <button class="btn btn-success btn-video"
+        data-video="https://www.youtube.com/embed/4xDzrJKXOOY?si=kRrapMMLcp6PIjIy">Synthwave</button>
+      <button class="btn btn-success btn-video"
+        data-video="https://www.youtube.com/embed/S_MOd40zlYU?si=oYUGV1fD99WWfrYH">Ambient</button>
       <!-- <button id="spotifyBtn" class="btn btn-success">Spotify</button> -->
     </div>
-<!-- 
+    <!-- 
     <div class="image-section">
       <a href="#" id="song1" target="_blank">
         <img src="" alt="Song 1" />
@@ -104,7 +112,7 @@
     </button> -->
 
   </div>
-  
+
 
 
   <!-- B ootstrap JS with Popper -->
@@ -112,24 +120,25 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.126.1/build/three.min.js"></script>
   <script src="script.js"></script>
   <script>
-    // Function to change the video source of the iframe
-    function changeVideoSource(newSource) {
-      var iframe = document.getElementById('videoPlayer');
-      console.log('Changing source to:', newSource); // This will log in the console for debugging.
-      iframe.src = newSource;
-    }
-  
-    // Get all buttons with the 'btn' class and add an event listener
-    var buttons = document.querySelectorAll('.btn');
-    buttons.forEach(function(button) {
-      button.addEventListener('click', function() {
-        var newVideoSource = this.getAttribute('data-video');
-        changeVideoSource(newVideoSource);
-      });
+document.addEventListener('DOMContentLoaded', function() {
+  // Target buttons with 'btn-success' class for video switching
+  const videoButtons = document.querySelectorAll('.btn-success');
+
+  videoButtons.forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent default action
+      const newVideoSource = this.getAttribute('data-video');
+      const iframe = document.getElementById('videoPlayer');
+      if (iframe) { // Check if the iframe exists
+        console.log('Changing source to:', newVideoSource);
+        iframe.src = newVideoSource;
+      }
     });
+  });
+});
   </script>
-  
-  
+
+
 </body>
 
 </html>
