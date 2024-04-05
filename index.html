@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <link rel="icon" href="images/logo.webp">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,14 +16,18 @@
 <body>
 
 
-  <div class="space-travelers">
+ 
     <div class="rocket-container">
       <img src="images/rocket.png" alt="Rocket" class="rocket" draggable="false">
     </div>
     <div class="astro-container">
       <img src="images/astro.png" alt="Astronaut" class="astro" draggable="false">
     </div>
-  </div>
+    <div class="UFO-container">
+      <img src="images/ufo.png" alt="UFO" class="ufo" draggable="false">
+    </div>
+
+
 
   </div>
   <div class="night">
@@ -33,7 +37,8 @@
     <div class="star slow-star"></div>
   </div>
 
-
+  <div class="mars"></div>
+  <div class="jupiter"></div>
   <div class="moon"></div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -119,24 +124,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.126.1/build/three.min.js"></script>
   <script src="script.js"></script>
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Target buttons with 'btn-success' class for video switching
-  const videoButtons = document.querySelectorAll('.btn-success');
 
-  videoButtons.forEach(function(button) {
-    button.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent default action
-      const newVideoSource = this.getAttribute('data-video');
-      const iframe = document.getElementById('videoPlayer');
-      if (iframe) { // Check if the iframe exists
-        console.log('Changing source to:', newVideoSource);
-        iframe.src = newVideoSource;
-      }
-    });
-  });
-});
-  </script>
 
 
 </body>
