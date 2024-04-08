@@ -1,5 +1,5 @@
-//Timer 
-let interval;
+// run in background with webworker
+let worker = new Worker('timerWorker.js');
 let countdownTime = 0;
 let running = false;
 
@@ -8,55 +8,60 @@ function updateTimerDisplay() {
   let hours = String(Math.floor(totalMilliseconds / 3600000)).padStart(2, '0');
   let minutes = String(Math.floor((totalMilliseconds % 3600000) / 60000)).padStart(2, '0');
   let seconds = String(Math.floor((totalMilliseconds % 60000) / 1000)).padStart(2, '0');
-  let milliseconds = String(Math.floor((totalMilliseconds % 1000) / 10)).padStart(2, '0'); // Adjusted for visibility
+  let milliseconds = String(Math.floor((totalMilliseconds % 1000) / 10)).padStart(2, '0');
 
   document.getElementById('hours').textContent = hours;
   document.getElementById('minutes').textContent = minutes;
   document.getElementById('seconds').textContent = seconds;
-  document.getElementById('milliseconds').textContent = milliseconds; // Ensure two digits are shown
+  document.getElementById('milliseconds').textContent = milliseconds;
 }
+
+
+worker.onmessage = function(e) {
+  countdownTime = e.data.countdownTime;
+  running = e.data.running;
+  document.getElementById('pauseBtn').disabled = !running;
+  updateTimerDisplay();
+  
+  if (e.data.finished) {
+    alert("Timer finished!");
+  }
+};
+
 
 function setTimer() {
   let inputHours = prompt("Set hours:", "0") || "0";
   let inputMinutes = prompt("Set minutes:", "0") || "0";
   countdownTime = (+inputHours * 3600 + +inputMinutes * 60) * 1000;
+  worker.postMessage({command: 'updateTime', countdownTime: countdownTime});
   updateTimerDisplay();
 }
 
 document.getElementById('hours').addEventListener('click', setTimer);
 document.getElementById('minutes').addEventListener('click', setTimer);
-//start button
+
+// Start button
 document.getElementById('startBtn').addEventListener('click', () => {
   if (!running && countdownTime > 0) {
     running = true;
     document.getElementById('pauseBtn').disabled = false;
-    interval = setInterval(() => {
-      countdownTime -= 10;
-      if (countdownTime <= 0) {
-        clearInterval(interval);
-        countdownTime = 0;
-        running = false;
-        document.getElementById('pauseBtn').disabled = true;
-
-      }
-      updateTimerDisplay();
-    }, 10);
+    worker.postMessage({command: 'start'});
   }
 });
-//pause button
+
+// Pause button
 document.getElementById('pauseBtn').addEventListener('click', () => {
   if (running) {
-    clearInterval(interval);
     running = false;
-    document.getElementById('pauseBtn').disabled = true;
+    worker.postMessage({command: 'stop'});
   }
 });
-//clear button
+
+// Clear button
 document.getElementById('clearBtn').addEventListener('click', () => {
-  clearInterval(interval);
   countdownTime = 0;
   running = false;
-  document.getElementById('pauseBtn').disabled = true;
+  worker.postMessage({command: 'clear'});
   updateTimerDisplay();
 });
 
